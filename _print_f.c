@@ -21,3 +21,4 @@ int _printf(const char *format, ....)
 	va_arg
 
 	va_end
+}
