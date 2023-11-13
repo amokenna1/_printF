@@ -50,13 +50,13 @@ int _printf(const char *format, ...)
 			}
 			else if (*format == 'd')
 			{
-				char *dInteger = va_arg(argsLst, int);
+				int *dInteger = va_arg(argsLst, int);
 				write(1, &dInteger, 1);
 				chrCount++;
 			}
 			else if (*format == 'i')
 			{
-				char *sInteger = va_arg(argsLst, int);
+				int *sInteger = va_arg(argsLst, int);
 				write(1, &sInteger, 1);
 				chrCount++;
 			}
