@@ -1,9 +1,14 @@
 #include "main.h"
 
+/**
+ * _printf - custom printf function
+ * @format: format specifier
+ * 
+ * Return: number of char printed (excluding null byte)
+*/
 int _printf(const char *format, ...)
 {
 	int chrCount = 0;
-
 	va_list argsLst;
 
 	if(format == NULL)
@@ -53,7 +58,13 @@ int _printf(const char *format, ...)
 	return chrCount;
 }
 
+/**
+ * main - entry point of the program
+ * 
+ * Return: 0 on success
+*/
 int main()
 {
 	printf("Miracle\0");
+	return (0);
 }
