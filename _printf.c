@@ -38,7 +38,7 @@ int _printf(const char *format, ...)
 			{
 				char charact = va_arg(argsLst, int);
 				write(1, &charact, 1);
-				chrCount++;
+				chrCount++;  /*next character*/
 			}
 			else if (*format == 's')
 			{
@@ -58,7 +58,7 @@ int _printf(const char *format, ...)
 			{
 				int *sInteger = va_arg(argsLst, int);
 				write(1, &sInteger, 1);
-				chrCount++;
+				chrCount++; /*next character*/
 			}
 		}
 		
