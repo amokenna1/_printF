@@ -2,21 +2,21 @@
 
 int _printf(const char *format, ...)
 {
-	int chr_Print = 0;
+	int chrCount = 0;
 
-	va_list args_lst;
+	va_list argsLst;
 
 	if(format == NULL)
-		return (-1);
+		return -1;
 
-	va_start(args_lst, format);
+	va_start(argsLst, format);
 
 	while(*format)
 	{
 		if(*format != '%')
 		{
 			write(1, format, 1);
-			chr_Print++;
+			chrCount++;
 		}
 		else 
 		{
@@ -27,30 +27,30 @@ int _printf(const char *format, ...)
 			if(*format == '%')
 			{
 				write(1, format, 1);
-				chr_Print++;
+				chrCount++;
 			}
 			else if (*format == 'c')
 			{
-				char c = va_arg(args_lst, int);
-				write(1, &c, 1);
-				chr_Print++;
+				char charact = va_arg(argsLst, int);
+				write(1, &charact, 1);
+				chrCount++;
 			}
 			else if (*format == 's')
 			{
-				char *str = va_arg(args_lst, char*);
-				int str_length = strlen(str);
+				char *str = va_arg(argsLst, char*);
+				int strLength = strlen(str);
 
-				write(1, str, str_length);
-				chr_Print += str_length;
+				write(1, str, strLength);
+				chrCount += strLength;
 			}
 		}
 		
 		format++;
 	}
 
-	va_end (args_lst);
+	va_end (argsLst);
 
-	return chr_Print;
+	return chrCount;
 }
 
 int main()
