@@ -48,6 +48,18 @@ int _printf(const char *format, ...)
 				write(1, str, strLength);
 				chrCount += strLength;
 			}
+			else if (*format == 'd')
+			{
+				char *dInteger = va_arg(argsLst, int);
+				write(1, &dInteger, 1);
+				chrCount++;
+			}
+			else if (*format == 'i')
+			{
+				char *sInteger = va_arg(argsLst, int);
+				write(1, &sInteger, 1);
+				chrCount++;
+			}
 		}
 		
 		format++;
@@ -69,5 +81,7 @@ int main()
 	_printf("%c\n", 'v');
 	_printf("%s\n", "String");
 	_printf("%%\n");
+	_printf("%d\n");
+	_printf("%i\n");
 	return (0);
 }
