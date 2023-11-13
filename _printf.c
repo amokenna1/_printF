@@ -58,16 +58,3 @@ int _printf(const char *format, ...)
 	return chrCount;
 }
 
-/**
- * main - entry point of the program
- * 
- * Return: 0 on success
-*/
-int main()
-{
-	_printf("Miracle\n");
-	_printf("%c\n", 'v');
-	_printf("%s\n", "String");
-	_printf("%%\n");
-	return (0);
-}
