@@ -65,9 +65,5 @@ int _printf(const char *format, ...)
 */
 int main()
 {
-	_printf("Miracle\n");
-	_printf("%c\n", 'v');
-	_printf("%s\n", "String");
-	_printf("%%\n");
 	return (0);
 }
