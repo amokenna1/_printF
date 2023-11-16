@@ -6,56 +6,55 @@
  * 
  * Return: number of char printed (excluding null byte)
 */
-int _printf(const char *format, ...)
-{
-	int chrCount = 0;
-	va_list argsLst;
+int _printf(const char *format, ...) {
+    va_list args;
+    int count = 0;
 
-	if(format == NULL)
-		return -1;
+    va_start(args, format);
 
-	va_start(argsLst, format);
+    while (*format != '\0') {
+        if (*format == '%' && *(format + 1) != '\0') {
+            format++; // Move to the next character after '%'
 
-	while(*format)
-	{
-		if(*format != '%')
-		{
-			write(1, format, 1);
-			chrCount++;
-		}
-		else 
-		{
-			format++; 
-			if (*format =='\0')
-				break;
-			
-			if(*format == '%')
-			{
-				write(1, format, 1);
-				chrCount++;
-			}
-			else if (*format == 'c')
-			{
-				char charact = va_arg(argsLst, int);
-				write(1, &charact, 1);
-				chrCount++;  /*next character*/
-			}
-			else if (*format == 's')
-			{
-				char *str = va_arg(argsLst, char*);
-				int strLength = strlen(str);
+            switch (*format) {
+                case 'c':
+                    count += write(1, va_arg(args, int), 1);
+                    break;
+                case 's': {
+                    const char *str = va_arg(args, const char *);
+                    int len = 0;
+                    while (str[len] != '\0') {
+                        len++;
+                    }
+                    count += write(1, str, len);
+                    break;
+                }
+                case 'd':
+                case 'i': {
+                    int num = va_arg(args, int);
+                    // Assuming a reasonable buffer size for simplicity
+                    char buffer[12]; // Enough to hold INT_MIN and '\0'
+                    int len = sprintf(buffer, "%d", num);
+                    count += write(1, buffer, len);
+                    break;
+                }
+                case '%':
+                    count += write(1, "%", 1);
+                    break;
+                default:
+                    count += write(1, format, 1);
+                    break;
+            }
+        } else {
+            count += write(1, format, 1);
+        }
 
-				write(1, str, strLength);
-				chrCount += strLength;
-			}
-		}
-		
-		format++;
-	}
+        format++;
+    }
 
-	va_end (argsLst);
+    va_end(args);
 
-	return chrCount;
+    return count;
 }
 
 /**
@@ -63,7 +62,7 @@ int _printf(const char *format, ...)
  * 
  * Return: 0 on success
 */
-int main()
-{
-	return (0);
+int main() {
+    /**_printf("Hello, %s! The answer is %d%%\n", "world", 42);**/
+    return 0;
 }
