@@ -14,11 +14,11 @@ int _printf(const char *format, ...) {
 
     while (*format != '\0') {
         if (*format == '%' && *(format + 1) != '\0') {
-            format++; // Move to the next character after '%'
+            format++; /** Move to the next character after '%'**/
 
             switch (*format) {
                 case 'c':
-                    count += write(1, va_arg(args, int), 1);
+                    count += write(1, &va_arg(args, int), 1);
                     break;
                 case 's': {
                     const char *str = va_arg(args, const char *);
@@ -32,8 +32,8 @@ int _printf(const char *format, ...) {
                 case 'd':
                 case 'i': {
                     int num = va_arg(args, int);
-                    // Assuming a reasonable buffer size for simplicity
-                    char buffer[12]; // Enough to hold INT_MIN and '\0'
+                    /***Assuming a reasonable buffer size for simplicity**/
+                    char buffer[12]; /** Enough to hold INT_MIN and '\0'**/
                     int len = sprintf(buffer, "%d", num);
                     count += write(1, buffer, len);
                     break;
