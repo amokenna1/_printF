@@ -18,7 +18,8 @@ int _printf(const char *format, ...) {
 
             switch (*format) {
                 case 'c':
-                    count += write(1, va_arg(args, int), 1);
+		    char charact = va_arg(args, int);
+                    count += write(1, &charact, 1);
                     break;
                 case 's': {
                     const char *str = va_arg(args, const char *);
